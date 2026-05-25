@@ -184,11 +184,20 @@ async function startServer() {
     const distPath = path.resolve(__dirname);
     console.log(`Serving static files from: ${distPath}`);
     
-    app.use(express.static(distPath));
+    app.use((req, res, next) => {
+      console.log(`[STATIC] Attempting to serve: ${req.url}`);
+      next();
+    }, express.static(distPath));
     
     app.get('*', (req, res) => {
       const indexPath = path.join(distPath, 'index.html');
-      res.sendFile(indexPath);
+      console.log(`[FALLBACK] Serving index.html for: ${req.url}`);
+      res.sendFile(indexPath, (err) => {
+        if (err) {
+          console.error(`[ERROR] Failed to send index.html: ${err.message}`);
+          res.status(500).send("Server Error: Missing index.html");
+        }
+      });
     });
   }
 
