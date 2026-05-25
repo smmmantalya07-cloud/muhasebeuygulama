@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Remix: Remix: Denetim.Al",
+  "description": "Akıllı Mali Müşavir Asistanı",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": []
+}

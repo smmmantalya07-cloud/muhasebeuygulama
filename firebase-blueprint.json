@@ -1,0 +1,29 @@
+{
+  "entities": {
+    "firm": {
+      "title": "Firm",
+      "description": "Represents a company or firm the user is managing",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "vkn": { "type": "string" },
+        "vd": { "type": "string" },
+        "sector": { "type": "string" },
+        "mizanSummary": { "type": "string" },
+        "gelirTablosuSummary": { "type": "string" },
+        "bilancoSummary": { "type": "string" },
+        "beyannameSummary": { "type": "string" },
+        "risk": { "type": "string" },
+        "riskColor": { "type": "string" }
+      },
+      "required": ["userId", "name"]
+    }
+  },
+  "firestore": {
+    "firms/{firmId}": {
+      "schema": "firm",
+      "description": "Firms owned by the user"
+    }
+  }
+}
